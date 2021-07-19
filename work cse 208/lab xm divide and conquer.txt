@@ -1,0 +1,17 @@
+#include<stdio.h>
+int totalstep(int n)
+{
+     if (n <= 3) return n;
+    int mid = n >> 1;
+    int left = n - mid;
+    return totalstep(mid) * totalstep(left) + totalstep(mid - 1) * totalstep(left - 1);
+}
+int main()
+{
+    int n,S;
+    printf("enter the number of stairs : ");
+    scanf("%d",&n);
+     S = totalstep(n);
+    printf("the total step are : %d\n",S);
+    
+}

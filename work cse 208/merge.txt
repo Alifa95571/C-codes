@@ -1,0 +1,83 @@
+#include <stdio.h>
+ mergeSort(int a[], int l, int h)
+{
+    int m;
+    if(l< h)
+    {
+        m = (l + h) / 2;
+        mergeSort(a, l, m);
+        mergeSort(a, m+1, h);
+        merge(a, l, m, h);
+    }
+}
+
+ merge(int a[], int l, int m, int h)
+{
+    int b[8];   
+    int i, j, k;
+    k = 0;
+    i = l;
+    j = m + 1;
+    while(i <= m && j <= h)
+    {
+        if(a[i] < a[j])
+        {
+            b[k] = a[i];
+            k++;
+            i++;
+            
+        }
+        else
+        {
+            b[k] = a[j];
+            k++;
+            j++;
+        }
+    }
+  
+    while(i <= m)
+    {
+        b[k] = a[i];
+        k++;
+        i++;
+    }
+  
+    while(j <= h)
+    {
+        b[k] = a[j];
+        k++;
+        j++;
+    }
+  
+    for(i= h; i >= l; i--)
+    {
+        a[i] = b[k];
+        --k;  
+    } 
+}
+
+
+ printTheArray(int a[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+    {
+        printf("%d ", a[i]);
+    }
+}
+ 
+int main()
+{
+    int arr[] = {32, 45, 67, 2, 7,8, 1 ,3};
+    int len = sizeof(arr)/sizeof(arr[0]);
+ 
+    printf("given and array :");
+    printArray(arr, len);
+    
+    
+    mergeSort(arr, 0, len - 1);
+ 
+    printf("sorted array : ");
+    printArray(arr, len);
+    return 0;
+}
